@@ -164,11 +164,28 @@
             background-size: 100% 100%;
         }
 
-        /* Logo area: white background */
+        /* Logo area: no background so hero shows through */
         .logo-unit {
-            background-color: #ffffff !important;
+            background-color: transparent !important;
             padding: 12px 20px;
             border-radius: 8px;
+        }
+        /* If logo2.png has white pixels, blend so they show the hero background */
+        .hero-container .logo-unit img {
+            mix-blend-mode: multiply;
+        }
+        /* Larger logo in banner; negative margin keeps content below from moving */
+        .hero-container .logo-unit {
+            width: 320px !important;
+            max-width: 320px !important;
+            height: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-bottom: -40px !important; /* pulls content up so layout doesn’t shift */
+        }
+        .hero-container .logo-unit img {
+            max-width: 100% !important;
+            height: auto !important;
         }
 
         /* Loading page: navy blue background, smaller logo */
@@ -323,19 +340,29 @@
         .charts-section .charts-inner {
             max-width: 1100px;
             margin: 0 auto;
+            padding: 0 20px;
+        }
+        .charts-section-core-focus .charts-inner {
+            padding: 0 20px;
         }
         .charts-section .section-title {
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 600;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             color: var(--brand-text-light);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
         .charts-section .section-subtitle {
             text-align: center;
             color: var(--brand-text-gray);
-            margin-bottom: 48px;
-            font-size: 1.05rem;
+            margin-bottom: 56px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         /* Ensure Our Core Focus is visible when inside comparison-section */
         .comparison-section .charts-section {
@@ -349,15 +376,41 @@
         }
         .comparison-section {
             height: auto !important;
-            min-height: 95vh;
+            min-height: auto;
             flex-wrap: wrap;
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
         }
         .comparison-section .content-container {
             flex: 1 1 400px;
+            max-width: 500px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .charts-section-core-focus {
+            flex: 1 1 400px;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .comparison-section .div-block-2 {
+            max-width: 100%;
+        }
+        .comparison-section .subtitle-3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .comparison-section .paragraph-3 {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            line-height: 1.6;
         }
         /* Traditional vs Forward bar chart */
         .comparison-chart {
-            margin-bottom: 72px;
+            margin: 0;
+            padding: 20px 0;
         }
         .comparison-chart .chart-title {
             font-size: 1.35rem;
@@ -366,22 +419,25 @@
             color: var(--brand-text-light);
         }
         .comparison-row {
-            margin-bottom: 24px;
+            margin-bottom: 32px;
+        }
+        .comparison-row:last-child {
+            margin-bottom: 0;
         }
         .comparison-row .row-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-size: 0.95rem;
             color: var(--brand-text-gray);
         }
         .comparison-row .row-label strong { color: var(--brand-text-light); }
         .bar-track {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             align-items: stretch;
-            height: 36px;
+            height: 40px;
         }
         .bar-wrap {
             flex: 1;
@@ -403,16 +459,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 48px;
+            gap: 64px;
+            padding: 40px 0;
         }
         @media (min-width: 900px) {
-            .core-focus-wrap { flex-direction: row; align-items: flex-start; justify-content: center; gap: 56px; }
+            .core-focus-wrap { 
+                flex-direction: row; 
+                align-items: center; 
+                justify-content: space-between; 
+                gap: 80px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
         }
         .donut-chart-wrap {
             flex-shrink: 0;
             position: relative;
-            width: 220px;
-            height: 220px;
+            width: 280px;
+            height: 280px;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
         }
         .donut-chart-wrap svg {
             width: 100%;
@@ -435,48 +500,73 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 0.85rem;
-            color: var(--brand-text-gray);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--brand-text-light);
+            letter-spacing: 0.05em;
         }
         .pillars-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 24px;
+            gap: 20px;
             width: 100%;
-            max-width: 640px;
+            max-width: 700px;
+            flex: 1;
         }
         @media (min-width: 600px) {
             .pillars-grid { grid-template-columns: repeat(2, 1fr); }
         }
         .pillar-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 28px;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .pillar-card.animated {
             opacity: 1;
             transform: translateY(0);
         }
         .pillar-card:hover {
-            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+        }
+        .pillar-card:hover::before {
+            opacity: 0.6;
         }
         .pillar-card .pillar-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
             color: var(--brand-text-light);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.01em;
         }
         .pillar-card .pillar-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
+            box-shadow: 0 0 12px currentColor;
+            flex-shrink: 0;
         }
         .pillar-card.healthcare .pillar-dot { background: #22c55e; }
         .pillar-card.education .pillar-dot { background: #3b82f6; }
@@ -488,11 +578,12 @@
             margin: 0;
         }
         .pillar-card li {
-            padding: 6px 0;
-            padding-left: 20px;
+            padding: 8px 0;
+            padding-left: 24px;
             position: relative;
             color: var(--brand-text-gray);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.7;
             opacity: 0;
             transform: translateX(-10px);
             transition: opacity 0.4s ease, transform 0.4s ease;
@@ -514,6 +605,518 @@
         .pillar-card.animated li:nth-child(2) { transition-delay: 0.18s; }
         .pillar-card.animated li:nth-child(3) { transition-delay: 0.26s; }
         .pillar-card.animated li:nth-child(4) { transition-delay: 0.34s; }
+        
+        /* ============================================
+           MOBILE RESPONSIVE STYLES
+           ============================================ */
+        
+        /* Hero Section Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                padding: 40px 20px !important;
+                min-height: auto !important;
+            }
+            
+            .hero-content-wrapper {
+                padding: 0 !important;
+                text-align: center !important;
+            }
+            
+            .hero-content-wrapper .container {
+                padding: 0 !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .hero-container .h1-main {
+                font-size: clamp(28px, 8vw, 40px) !important;
+                line-height: 1.2 !important;
+                margin-bottom: 20px;
+            }
+            
+            .hero-container .p {
+                font-size: clamp(16px, 4vw, 20px) !important;
+                line-height: 1.5 !important;
+                margin-bottom: 30px;
+            }
+            
+            .hero-container .button-style {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 15px !important;
+            }
+            
+            .hero-container .button-style .button-style {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 14px 20px !important;
+            }
+            
+            .logo-unit {
+                max-width: 280px !important;
+                width: 100% !important;
+                margin-bottom: 30px;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            
+            .logo-unit img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Hero glow wrapper - constrain and scale on mobile */
+            .hero-glow-wrapper {
+                max-width: 100vw !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                overflow: hidden !important;
+                pointer-events: none !important;
+                box-sizing: border-box !important;
+            }
+            
+            .hero-glow-wrapper .image-10 {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: auto !important;
+                object-fit: contain !important;
+                min-width: 0 !important;
+            }
+        }
+        
+        /* Social Proof Section Mobile */
+        @media (max-width: 768px) {
+            .social-proof-section {
+                flex-direction: column !important;
+                gap: 20px !important;
+                padding: 40px 20px !important;
+            }
+            
+            .social-proof-unit {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            .social-proof-unit img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+        
+        /* Story Container Mobile */
+        @media (max-width: 768px) {
+            .story-container {
+                padding: 60px 20px !important;
+            }
+            
+            .story-container .h2 {
+                font-size: clamp(24px, 6vw, 32px) !important;
+                line-height: 1.3 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .story-container .h3 {
+                font-size: clamp(16px, 4vw, 20px) !important;
+                line-height: 1.6 !important;
+            }
+        }
+        
+        /* Charts Section Mobile */
+        @media (max-width: 768px) {
+            .charts-section {
+                padding: 60px 16px 80px !important;
+            }
+            
+            .charts-section .charts-inner {
+                padding: 0 10px !important;
+            }
+            
+            .core-focus-wrap {
+                flex-direction: column !important;
+                gap: 40px !important;
+            }
+            
+            .donut-chart-wrap {
+                width: 240px !important;
+                height: 240px !important;
+            }
+            
+            .pillars-grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            
+            .pillar-card {
+                padding: 20px !important;
+            }
+            
+            .pillar-card .pillar-title {
+                font-size: 1.1rem !important;
+            }
+            
+            .comparison-section {
+                flex-direction: column !important;
+                padding: 40px 20px !important;
+            }
+            
+            .comparison-section .content-container {
+                max-width: 100% !important;
+                padding: 20px !important;
+            }
+            
+            .comparison-chart {
+                padding: 20px 0 !important;
+            }
+            
+            .comparison-row .row-label {
+                font-size: 0.85rem !important;
+                flex-wrap: wrap !important;
+            }
+            
+            .bar-track {
+                height: 32px !important;
+                gap: 12px !important;
+            }
+        }
+        
+        /* Partner Section Mobile */
+        @media (max-width: 768px) {
+            .partner-section {
+                padding: 60px 20px !important;
+            }
+            
+            .partner-section .subtitle-2 {
+                font-size: clamp(20px, 5vw, 24px) !important;
+                margin-bottom: 40px !important;
+            }
+            
+            .partner-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+                padding: 0 16px !important;
+            }
+            
+            .partner-grid .partner-card {
+                padding: 24px !important;
+            }
+            
+            .partner-section .partner-card h3 {
+                font-size: clamp(1.15rem, 4vw, 1.4rem) !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .partner-section .partner-card li {
+                font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+                margin-bottom: 12px !important;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .partner-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+        }
+        
+        /* Partner grid base (desktop) - overrides inline when present */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .partner-grid .partner-card {
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        
+        .partner-grid .partner-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-family: inherit;
+        }
+        
+        .partner-grid .partner-card ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.8;
+            font-family: inherit;
+        }
+        
+        .partner-grid .partner-card li {
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+        
+        /* Intro Container 2 / Vision Section Mobile */
+        @media (max-width: 768px) {
+            .intro-container-2 {
+                padding: 40px 20px !important;
+            }
+            
+            .visualisation {
+                margin-bottom: 40px !important;
+            }
+            
+            .visualisation img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            
+            .content-wrapper .h6 {
+                font-size: clamp(14px, 3vw, 16px) !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .content-wrapper .h1 {
+                font-size: clamp(22px, 5.5vw, 28px) !important;
+                line-height: 1.4 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .content-wrapper .paragraph-4 {
+                font-size: clamp(15px, 4vw, 18px) !important;
+                line-height: 1.7 !important;
+            }
+        }
+        
+        /* Product Section Mobile */
+        @media (max-width: 768px) {
+            .product-section {
+                padding: 60px 20px !important;
+                flex-direction: column !important;
+            }
+            
+            .product-visual-wrapper {
+                margin-bottom: 40px !important;
+            }
+            
+            .product-visual-wrapper img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            .product-content-wrapper {
+                text-align: center !important;
+                padding: 0 !important;
+            }
+            
+            .product-content-wrapper .title-style-4 {
+                font-size: clamp(14px, 3vw, 16px) !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .product-content-wrapper .subtitle-5 {
+                font-size: clamp(24px, 6vw, 32px) !important;
+                line-height: 1.3 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .product-content-wrapper .paragraph-5 {
+                font-size: clamp(15px, 4vw, 18px) !important;
+                line-height: 1.6 !important;
+            }
+        }
+        
+        /* CTA Section / Footer Mobile */
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 60px 20px !important;
+            }
+            
+            .cta-section .title-style {
+                font-size: clamp(20px, 5vw, 24px) !important;
+                margin-bottom: 30px !important;
+                text-align: center !important;
+            }
+            
+            .cta-section .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                text-align: center !important;
+            }
+            
+            .cta-section .paragraph-6 > div {
+                margin-bottom: 20px;
+            }
+            
+            .cta-section h4 {
+                font-size: clamp(16px, 4vw, 18px) !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .cta-section ul {
+                font-size: clamp(14px, 3.5vw, 16px) !important;
+            }
+            
+            .frame-1410222050 .div-block-6 {
+                margin-bottom: 40px !important;
+            }
+            
+            .frame-1410222050 .div-block-6 img {
+                max-width: 200px !important;
+                height: auto !important;
+            }
+        }
+        
+        /* Modal Mobile */
+        @media (max-width: 768px) {
+            .demo-form-modal .modal-container {
+                width: 90% !important;
+                max-width: 90% !important;
+                padding: 30px 20px !important;
+                margin: 20px !important;
+            }
+            
+            .modal-heading {
+                font-size: clamp(20px, 5vw, 24px) !important;
+            }
+            
+            .field {
+                padding: 12px 16px !important;
+                font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+            
+            .submit-button {
+                padding: 14px 24px !important;
+                font-size: 16px !important;
+                width: 100% !important;
+            }
+        }
+        
+        /* Mobile Sticky Button */
+        @media (max-width: 768px) {
+            .mobile-sticky-button-wrapper {
+                display: block !important;
+            }
+            
+            .mobile-sticky-button-wrapper .container-15 {
+                padding: 16px 20px !important;
+            }
+            
+            .button-text-4 {
+                font-size: 16px !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-sticky-button-wrapper {
+                display: none !important;
+            }
+        }
+        
+        /* General Mobile Improvements */
+        @media (max-width: 768px) {
+            /* Ensure images don't overflow */
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Group458 / circle-small-anim - keep substantial size on mobile (don't over-shrink) */
+            .circle-small-anim {
+                min-width: min(85vw, 500px) !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Same asset in CTA section - keep visible size */
+            .frame-1410222050 .div-block-6 .image-19 {
+                min-width: min(60vw, 200px) !important;
+            }
+            
+            /* Touch-friendly buttons */
+            button, .button-style, a.button-style {
+                min-height: 44px !important; /* iOS touch target minimum */
+                min-width: 44px !important;
+            }
+            
+            /* Prevent horizontal scroll */
+            * {
+                max-width: 100%;
+            }
+            
+            /* Better spacing for mobile */
+            section {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            
+            /* Text readability */
+            p, li, span {
+                font-size: clamp(14px, 3.5vw, 18px) !important;
+                line-height: 1.6 !important;
+            }
+        }
+        
+        /* Tablet Responsive (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-container .h1-main {
+                font-size: clamp(36px, 6vw, 44px) !important;
+            }
+            
+            .hero-container .p {
+                font-size: clamp(18px, 3vw, 22px) !important;
+            }
+            
+            .partner-section > div > div {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+            
+            .cta-section .footer-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
+        /* Small Mobile (max-width: 480px) */
+        @media (max-width: 480px) {
+            .hero-container {
+                padding: 30px 16px !important;
+            }
+            
+            .hero-container .h1-main {
+                font-size: 24px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .hero-container .p {
+                font-size: 16px !important;
+            }
+            
+            .charts-section {
+                padding: 40px 12px 60px !important;
+            }
+            
+            .donut-chart-wrap {
+                width: 200px !important;
+                height: 200px !important;
+            }
+            
+            .pillar-card {
+                padding: 16px !important;
+            }
+            
+            .partner-section {
+                padding: 40px 16px !important;
+            }
+            
+            .story-container {
+                padding: 40px 16px !important;
+            }
+            
+            .cta-section {
+                padding: 40px 16px !important;
+            }
+        }
     </style>
 
     <link rel="preload" as="image" href="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68efab4ed2d813693b89f61c_person-3-photo.avif" type="image/avif">
@@ -623,13 +1226,13 @@
         <div class="preloader-inner">
             <div class="preloader-logo-wrap">
                 <div class="preloader-spinner" aria-hidden="true"></div>
-                <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="ForwardAfrica logo" class="image-12 preloader-logo" />
+                <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo2.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="ForwardAfrica logo" class="image-12 preloader-logo" />
             </div>
         </div>
     </div>
     <section data-figma-id="1591:5007" class="hero-container">
         <div data-figma-id="1591:5022" class="hero-content-wrapper">
-            <div data-figma-id="1822:23306" class="logo-unit"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" alt="ForwardAfrica by loop logo" loading="lazy" /></div>
+            <div data-figma-id="1822:23306" class="logo-unit"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo2.png" alt="ForwardAfrica by loop logo" loading="lazy" /></div>
             <div data-figma-id="1591:5347" class="container">
                 <p data-figma-id="1591:5024" class="h1-main text-h1">Moving Africa Forward.</p>
                 <p data-figma-id="1591:5345" class="p">An African institution with an international agenda, building the foundations of a continent through Education, Capital, and Healthcare.</p>
@@ -1370,25 +1973,25 @@
     </section>
     <section data-figma-id="1591:5084" class="partner-section" style="padding: 80px 20px;">
         <p data-figma-id="1591:5085" class="subtitle-2 text-h6" style="text-align: center; margin-bottom: 60px; font-size: 1.5em; font-family: inherit;">Our Strategic Ecosystem</p>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <h3 style="font-size: 1.8em; margin-bottom: 20px; font-family: inherit;">Education &amp; Leadership</h3>
-                <ul style="list-style: none; padding: 0; line-height: 1.8; font-family: inherit;">
-                    <li style="margin-bottom: 15px; font-family: inherit;"><strong>Forward International:</strong> Our executive development platform, fellowship programs, and accelerators for the continent's senior talent.</li>
-                    <li style="margin-bottom: 15px; font-family: inherit;"><strong>FWD Learn:</strong> Democratizing knowledge through mass-scale digital learning for all Africans.</li>
-                    <li style="margin-bottom: 15px; font-family: inherit;"><strong>Grow Develop Africa:</strong> Our Think Tank, targeting leaders across all sectors to shape development policy.</li>
+        <div class="partner-grid">
+            <div class="partner-card">
+                <h3>Education &amp; Leadership</h3>
+                <ul>
+                    <li><strong>Forward International:</strong> Our executive development platform, fellowship programs, and accelerators for the continent's senior talent.</li>
+                    <li><strong>FWD Learn:</strong> Democratizing knowledge through mass-scale digital learning for all Africans.</li>
+                    <li><strong>Grow Develop Africa:</strong> Our Think Tank, targeting leaders across all sectors to shape development policy.</li>
                 </ul>
             </div>
-            <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <h3 style="font-size: 1.8em; margin-bottom: 20px; font-family: inherit;">Capital &amp; Investment</h3>
-                <ul style="list-style: none; padding: 0; line-height: 1.8; font-family: inherit;">
-                    <li style="margin-bottom: 15px; font-family: inherit;"><strong>Albatross Capital:</strong> Our strategic investment arm. Utilizing a "long-view" philosophy to manage group capital, and scale high-potential African organizations.</li>
+            <div class="partner-card">
+                <h3>Capital &amp; Investment</h3>
+                <ul>
+                    <li><strong>Albatross Capital:</strong> Our strategic investment arm. Utilizing a "long-view" philosophy to manage group capital, and scale high-potential African organizations.</li>
                 </ul>
             </div>
-            <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <h3 style="font-size: 1.8em; margin-bottom: 20px; font-family: inherit;">Healthcare &amp; Vitality</h3>
-                <ul style="list-style: none; padding: 0; line-height: 1.8; font-family: inherit;">
-                    <li style="margin-bottom: 15px; font-family: inherit;"><strong>Forward Health:</strong> (Future Vertical) A network of specialized centers—including Neuro and Cardio excellence—and a robust pharmaceutical distribution chain across Kenya and beyond.</li>
+            <div class="partner-card">
+                <h3>Healthcare &amp; Vitality</h3>
+                <ul>
+                    <li><strong>Forward Health:</strong> (Future Vertical) A network of specialized centers—including Neuro and Cardio excellence—and a robust pharmaceutical distribution chain across Kenya and beyond.</li>
                 </ul>
             </div>
         </div>
@@ -1487,7 +2090,7 @@
                     alt="" class="image-19" /></div>
             <div class="container-10">
                 <div class="title-style" style="font-style: italic; font-size: 2em; margin-bottom: 30px;">Building People is Building a Better Future</div>
-                <div class="paragraph-6" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: left; max-width: 1200px; margin: 0 auto;">
+                <div class="paragraph-6 footer-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: left; max-width: 1200px; margin: 0 auto;">
                     <div>
                         <h4 style="margin-bottom: 15px; font-weight: bold;">Quick Links</h4>
                         <ul style="list-style: none; padding: 0; line-height: 2;">
@@ -1510,7 +2113,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="frame-1410222051"></div><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" loading="lazy" width="1424" height="243.40260314941406" alt="" class="vector" /> --></div>
+            <!-- <div class="frame-1410222051"></div><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo2.png" loading="lazy" width="1424" height="243.40260314941406" alt="" class="vector" /> --></div>
     </section>
     <div class="mobile-sticky-button-wrapper">
         <div data-w-id="c8ae7694-d194-2677-99c9-51c1b1bac001" class="container-15">
