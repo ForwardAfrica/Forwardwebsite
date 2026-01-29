@@ -123,6 +123,12 @@
             /* background-color: #your-color-here !important; */
         }
         
+        /* Vector logo: fade out with white colour offset */
+        img.vector {
+            opacity: 0.35 !important;
+            filter: brightness(1.6) contrast(0.9) !important;
+        }
+        
         /* Fix for circle-large image - ensure it displays correctly */
         .circle-large-anim {
             border: none !important;
@@ -169,10 +175,44 @@
         .preloader {
             background-color: #0f172a !important; /* Navy blue */
             background-image: none !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .preloader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .preloader-logo-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+        }
+        .preloader-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 160px;
+            height: 160px;
+            margin: -80px 0 0 -80px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: preloader-spin 0.9s linear infinite;
+        }
+        @keyframes preloader-spin {
+            to { transform: rotate(360deg); }
         }
         .preloader .preloader-logo,
         .preloader .image-12 {
-            max-width: 160px !important;
+            position: relative;
+            z-index: 1;
+            max-width: 120px !important;
             width: auto !important;
             height: auto !important;
             transform: scale(0.6) !important;
@@ -273,6 +313,207 @@
             --brand-error: #f44;
             --brand-success: #34febd;
         }
+
+        /* ----- Charts section: Traditional vs Forward + Core Focus ----- */
+        .charts-section {
+            background: linear-gradient(180deg, #001f3f 0%, #0f172a 100%);
+            padding: 80px 24px 100px;
+            color: var(--brand-text-light);
+        }
+        .charts-section .charts-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .charts-section .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 12px;
+            color: var(--brand-text-light);
+        }
+        .charts-section .section-subtitle {
+            text-align: center;
+            color: var(--brand-text-gray);
+            margin-bottom: 48px;
+            font-size: 1.05rem;
+        }
+        /* Ensure Our Core Focus is visible when inside comparison-section */
+        .comparison-section .charts-section {
+            display: block !important;
+            visibility: visible !important;
+            flex: 1 1 auto;
+            min-width: 320px;
+            min-height: 400px;
+            overflow-y: auto;
+            height: auto;
+        }
+        .comparison-section {
+            height: auto !important;
+            min-height: 95vh;
+            flex-wrap: wrap;
+        }
+        .comparison-section .content-container {
+            flex: 1 1 400px;
+        }
+        /* Traditional vs Forward bar chart */
+        .comparison-chart {
+            margin-bottom: 72px;
+        }
+        .comparison-chart .chart-title {
+            font-size: 1.35rem;
+            margin-bottom: 28px;
+            text-align: center;
+            color: var(--brand-text-light);
+        }
+        .comparison-row {
+            margin-bottom: 24px;
+        }
+        .comparison-row .row-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--brand-text-gray);
+        }
+        .comparison-row .row-label strong { color: var(--brand-text-light); }
+        .bar-track {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            height: 36px;
+        }
+        .bar-wrap {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            width: 0;
+            transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .bar-wrap.traditional .bar-fill { background: linear-gradient(90deg, #475569, #64748b); }
+        .bar-wrap.forward .bar-fill { background: linear-gradient(90deg, #dc2626, #ef4444); }
+        /* Core Focus: donut + 4 pillars */
+        .core-focus-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+        }
+        @media (min-width: 900px) {
+            .core-focus-wrap { flex-direction: row; align-items: flex-start; justify-content: center; gap: 56px; }
+        }
+        .donut-chart-wrap {
+            flex-shrink: 0;
+            position: relative;
+            width: 220px;
+            height: 220px;
+        }
+        .donut-chart-wrap svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .donut-segment {
+            fill: none;
+            stroke-linecap: round;
+            stroke-dasharray: 0 100;
+            transition: stroke-dasharray 1.2s cubic-bezier(0.22, 1, 0.36, 1), stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .donut-segment.healthcare { stroke: #22c55e; }
+        .donut-segment.education { stroke: #3b82f6; }
+        .donut-segment.finance { stroke: #eab308; }
+        .donut-segment.policy { stroke: #a855f7; }
+        .donut-legend {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--brand-text-gray);
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            width: 100%;
+            max-width: 640px;
+        }
+        @media (min-width: 600px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .pillar-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+        .pillar-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pillar-card:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+        }
+        .pillar-card .pillar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--brand-text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pillar-card .pillar-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .pillar-card.healthcare .pillar-dot { background: #22c55e; }
+        .pillar-card.education .pillar-dot { background: #3b82f6; }
+        .pillar-card.finance .pillar-dot { background: #eab308; }
+        .pillar-card.policy .pillar-dot { background: #a855f7; }
+        .pillar-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pillar-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--brand-text-gray);
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .pillar-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.6;
+        }
+        .pillar-card.animated li { opacity: 1; transform: translateX(0); }
+        .pillar-card.animated li:nth-child(1) { transition-delay: 0.1s; }
+        .pillar-card.animated li:nth-child(2) { transition-delay: 0.18s; }
+        .pillar-card.animated li:nth-child(3) { transition-delay: 0.26s; }
+        .pillar-card.animated li:nth-child(4) { transition-delay: 0.34s; }
     </style>
 
     <link rel="preload" as="image" href="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68efab4ed2d813693b89f61c_person-3-photo.avif" type="image/avif">
@@ -378,8 +619,14 @@
             </div>
         </div>
     </div>
-    <div data-w-id="4aede93e-96d7-57e8-59b1-3485b6f517bf" style="display:flex" class="preloader"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
-            data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="ForwardAfrica logo" class="image-12 preloader-logo" /></div>
+    <div data-w-id="4aede93e-96d7-57e8-59b1-3485b6f517bf" style="display:flex" class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo-wrap">
+                <div class="preloader-spinner" aria-hidden="true"></div>
+                <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="ForwardAfrica logo" class="image-12 preloader-logo" />
+            </div>
+        </div>
+    </div>
     <section data-figma-id="1591:5007" class="hero-container">
         <div data-figma-id="1591:5022" class="hero-content-wrapper">
             <div data-figma-id="1822:23306" class="logo-unit"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" alt="ForwardAfrica by loop logo" loading="lazy" /></div>
@@ -430,6 +677,89 @@
         <div data-figma-id="1591:5060">
             <h2 class="h2" style="margin-bottom: 1em;">The Leading Catalyst for African Transformation.</h2>
             <p data-figma-id="1591:5060 - 1" class="h3">Forward Group Africa is a leading African institution with an international agenda, committed to creating sustained, high-impact development across the continent.<br/><br/>Forward Group Africa is more than an investment holding; we are a growth institution dedicated to sustained, high-impact development. We bridge the gap between local potential and international standards, ensuring that Africa's growth is fueled by excellence, integrity, and a long-term vision.</p>
+        </div>
+    </section>
+    <!-- Animated charts: Traditional vs Forward + Core Focus 4 pillars -->
+    <section class="charts-section" id="chartsSection">
+        <div class="charts-inner">
+            <!-- <div class="comparison-chart">
+                <div class="comparison-row">
+                    <div class="row-label"><strong>Structure</strong><span>Traditional → Forward</span></div>
+                    <div class="bar-track">
+                        <div class="bar-wrap traditional"><div class="bar-fill" data-width="35"></div></div>
+                        <div class="bar-wrap forward"><div class="bar-fill" data-width="95"></div></div>
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="row-label"><strong>Focus</strong><span>Silos → Integrated</span></div>
+                    <div class="bar-track">
+                        <div class="bar-wrap traditional"><div class="bar-fill" data-width="30"></div></div>
+                        <div class="bar-wrap forward"><div class="bar-fill" data-width="100"></div></div>
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="row-label"><strong>Impact horizon</strong><span>Short-term → Long-term</span></div>
+                    <div class="bar-track">
+                        <div class="bar-wrap traditional"><div class="bar-fill" data-width="40"></div></div>
+                        <div class="bar-wrap forward"><div class="bar-fill" data-width="98"></div></div>
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="row-label"><strong>Pillars</strong><span>Single sector → Four pillars</span></div>
+                    <div class="bar-track">
+                        <div class="bar-wrap traditional"><div class="bar-fill" data-width="25"></div></div>
+                        <div class="bar-wrap forward"><div class="bar-fill" data-width="100"></div></div>
+                    </div>
+                </div>
+            </div> -->
+            <h2 class="section-title">Our Core Focus</h2>
+            <p class="section-subtitle">Four pillars driving Africa forward.</p>
+            <div class="core-focus-wrap">
+                <div class="donut-chart-wrap" id="donutChart">
+                    <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <circle class="donut-segment healthcare" id="segHealth" cx="50" cy="50" r="42" stroke-width="12" stroke-dasharray="0 100" style="stroke-dasharray: 65.9734, 197.92; stroke-dashoffset: 0;"></circle>
+                        <circle class="donut-segment education" id="segEdu" cx="50" cy="50" r="42" stroke-width="12" stroke-dasharray="0 100" style="stroke-dasharray: 65.9734, 197.92; stroke-dashoffset: -65.9734;"></circle>
+                        <circle class="donut-segment finance" id="segFinance" cx="50" cy="50" r="42" stroke-width="12" stroke-dasharray="0 100" style="stroke-dasharray: 65.9734, 197.92; stroke-dashoffset: -131.947;"></circle>
+                        <circle class="donut-segment policy" id="segPolicy" cx="50" cy="50" r="42" stroke-width="12" stroke-dasharray="0 100" style="stroke-dasharray: 65.9734, 197.92; stroke-dashoffset: -197.92;"></circle>
+                    </svg>
+                    <div class="donut-legend">4 Pillars</div>
+                </div>
+                <div class="pillars-grid">
+                    <div class="pillar-card healthcare animated" data-pillar="healthcare" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                        <div class="pillar-title"><span class="pillar-dot"></span>Healthcare</div>
+                        <ul>
+                            <li>Mental Health Center</li>
+                            <li>Clinical Centers</li>
+                            <li>Top Surgical Centers Neurology</li>
+                            <li>Dentistry &amp; Optical</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card education animated" data-pillar="education" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                        <div class="pillar-title"><span class="pillar-dot"></span>Education</div>
+                        <ul>
+                            <li>Executive Education</li>
+                            <li>Career Intelligence</li>
+                            <li>Professional Development</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card finance animated" data-pillar="finance" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                        <div class="pillar-title"><span class="pillar-dot"></span>Finance Engine</div>
+                        <ul>
+                            <li>Investments</li>
+                            <li>Fund</li>
+                            <li>Market Integration</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card policy animated" data-pillar="policy" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                        <div class="pillar-title"><span class="pillar-dot"></span>Policy Architects</div>
+                        <ul>
+                            <li>Think Tank</li>
+                            <li>Data Warehouse</li>
+                            <li>Advocacy &amp; Lobbying</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="intro-container-2"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806e1_flower.avif" loading="lazy" width="200" height="200" alt="illustration of a flower" class="flower-2" /><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806e2_leaf.avif"
@@ -1063,32 +1393,29 @@
             </div>
         </div>
     </section>
+    <style>
+        /* Prevent slider section from looking squeezed with 2 slides */
+        .slider-4 .w-slider-mask { width: 100%; min-width: 100%; }
+        .slider-4 .story-slide.w-slide { width: 100%; min-width: 100%; flex-shrink: 0; }
+    </style>
     <div data-delay="0" data-animation="fade" class="slider-4 w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="4" data-duration="300" data-infinite="true">
         <div class="w-slider-mask">
-            <div class="story-slide w-slide">
+            <!-- <div class="story-slide w-slide" aria-label="1 of 3" role="group" aria-hidden="true">
                 <div id="slide-1" data-w-id="4a7fdb44-e607-ca87-0900-41ef0ba89a2e" class="stories-section-slide active"><img width="946.6666870117188" height="640" alt="Arvind, 43, allocated 30% of his ForwardAfrica budget to childcare so he can focus on spending quality time with his kids without worrying about their care." src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ed032924be7f7d24a51905_Rectangle%2021761.avif"
                         loading="lazy" id="w-node-_3dd1e3ab-984a-79bb-e16f-1cd67bd5e797-9b4806c9" class="image-container" />
                     <div class="content-wrapper-2 slide1">
                         <div class="story">Arvind, 43, <span class="text-span">allocated 30% of his ForwardAfrica budget</span> to childcare so he can focus on spending quality time with his kids without worrying about their care.</div>
                     </div>
                 </div>
-            </div>
-            <div class="story-slide w-slide">
+            </div> -->
+            <!-- <div class="story-slide w-slide">
                 <div id="slide-2" data-w-id="75ad09a8-b0f8-ab6f-3d73-392a6794f9f7" class="stories-section-slide active"><img width="946.6666870117188" height="640" alt="Arvind, 43, allocated 30% of his ForwardAfrica budget to childcare so he can focus on spending quality time with his kids without worrying about their care." src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ed0417cf891c6cf49d8220_Rectangle%2021763%20(1).avif"
                         loading="lazy" id="w-node-_75ad09a8-b0f8-ab6f-3d73-392a6794f9f8-9b4806c9" class="image-container" />
                     <div class="content-wrapper-2 slide2">
                         <div class="story">Bhoomi, 24, <span class="text-span-5">allocated 40% of her ForwardAfrica budget</span> to fitness &amp; mental health to rebuild her energy and avoid burnout.</div>
                     </div>
                 </div>
-            </div>
-            <div class="story-slide w-slide">
-                <div id="slide-3.5" data-w-id="08d71208-3730-1a92-6a37-a2ff1a986a55" class="stories-section-slide active"><img width="946.6666870117188" height="640" alt="Arvind, 43, allocated 30% of his ForwardAfrica budget to childcare so he can focus on spending quality time with his kids without worrying about their care." src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ed03293b7faf8fe438c55d_Rectangle%2021768.avif"
-                        loading="lazy" id="w-node-_08d71208-3730-1a92-6a37-a2ff1a986a56-9b4806c9" class="image-container" />
-                    <div class="content-wrapper-2 slide-3">
-                        <div class="story">ForwardAfrica has empowered thousands of families across Africa, <span class="text-span-4">delivering transformative healthcare solutions </span>that bridge gaps in access, quality, and affordability—building a healthier, more resilient continent.</div>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
         <div class="slide-nav-3 w-slider-nav w-slider-nav-invert w-round"></div>
     </div>
@@ -1100,12 +1427,40 @@
                 <div class="paragraph-3 text-p">We integrate the core verticals of development; Education, Capital, Human Resource and Legal Frameworks.<br/><br/>Forward Group Africa has a "Flywheel Effect"—where knowledge informs investment, and investment drives the progress of the people, and the people drive the continent forward.</div>
             </div>
         </div>
-        <div data-figma-id="1591:5128" class="visual-container">
-            <div data-w-id="e23b8f34-4d13-762b-4ec4-ffdd1f1a6513" data-is-ix2-target="1" class="lottie-animation" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ef88e2baa5129a5c1f42b1_New%20Lottie.json"
-                data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="0" data-duration="3"></div>
-            <div style="opacity:0" class="hero-glow-wrapper"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif" loading="lazy" width="648" sizes="(max-width: 767px) 100vw, 648px" alt="" srcset="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-500.avif 500w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-800.png 800w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif 1296w"
-                    class="image-10 coparison-glow" /></div>
-        </div>
+        <section class="charts-section charts-section-core-focus" id="chartsSection2">
+            <div class="charts-inner">
+                <div class="comparison-chart">
+                    <div class="comparison-row">
+                        <div class="row-label"><strong>Structure</strong><span>Traditional → Forward</span></div>
+                        <div class="bar-track">
+                            <div class="bar-wrap traditional"><div class="bar-fill" data-width="35" style="width: 35%;"></div></div>
+                            <div class="bar-wrap forward"><div class="bar-fill" data-width="95" style="width: 95%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="row-label"><strong>Focus</strong><span>Silos → Integrated</span></div>
+                        <div class="bar-track">
+                            <div class="bar-wrap traditional"><div class="bar-fill" data-width="30" style="width: 30%;"></div></div>
+                            <div class="bar-wrap forward"><div class="bar-fill" data-width="100" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="row-label"><strong>Impact horizon</strong><span>Short-term → Long-term</span></div>
+                        <div class="bar-track">
+                            <div class="bar-wrap traditional"><div class="bar-fill" data-width="40" style="width: 40%;"></div></div>
+                            <div class="bar-wrap forward"><div class="bar-fill" data-width="98" style="width: 98%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="row-label"><strong>Pillars</strong><span>Single sector → Four pillars</span></div>
+                        <div class="bar-track">
+                            <div class="bar-wrap traditional"><div class="bar-fill" data-width="25" style="width: 25%;"></div></div>
+                            <div class="bar-wrap forward"><div class="bar-fill" data-width="100" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
     <section class="product-section">
         <div class="product-visual-wrapper"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806f7_product-visual-leaf-left.avif" loading="lazy" width="321" alt="" class="product-visual-leaf-left" /><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806f8_product-visual-leaf-right.avif"
@@ -1155,7 +1510,7 @@
                     </div>
                 </div>
             </div>
-            <div class="frame-1410222051"></div><img src="https://cdn.prod.website-files.com/68e3657728e24692ae092d38/68eca327800abd37870fa58e_Vector.svg" loading="lazy" width="1424" height="243.40260314941406" alt="" class="vector" /></div>
+            <!-- <div class="frame-1410222051"></div><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo1.png" loading="lazy" width="1424" height="243.40260314941406" alt="" class="vector" /> --></div>
     </section>
     <div class="mobile-sticky-button-wrapper">
         <div data-w-id="c8ae7694-d194-2677-99c9-51c1b1bac001" class="container-15">
@@ -1170,6 +1525,42 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         gsap.registerPlugin(SplitText, ScrollTrigger);
+    </script>
+    <script type="text/javascript">
+        (function() {
+            function initChartsAnimation(section) {
+                if (!section) return;
+                var barFills = section.querySelectorAll('.bar-fill');
+                var donutSegments = section.querySelectorAll('.donut-segment');
+                var pillarCards = section.querySelectorAll('.pillar-card');
+                var circumference = 2 * Math.PI * 42;
+                var quarter = circumference / 4;
+                var dashArray = quarter + ' ' + (circumference - quarter);
+
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top 75%',
+                    once: true,
+                    onEnter: function() {
+                        barFills.forEach(function(el) {
+                            var w = el.getAttribute('data-width');
+                            if (w) el.style.width = w + '%';
+                        });
+                        donutSegments.forEach(function(el, i) {
+                            el.style.strokeDasharray = dashArray;
+                            el.style.strokeDashoffset = -i * quarter;
+                        });
+                        pillarCards.forEach(function(card, i) {
+                            gsap.to(card, { opacity: 1, y: 0, duration: 0.6, delay: 0.1 * i, ease: 'power2.out', onComplete: function() {
+                                card.classList.add('animated');
+                            }});
+                        });
+                    }
+                });
+            }
+            initChartsAnimation(document.getElementById('chartsSection'));
+            initChartsAnimation(document.getElementById('chartsSection2'));
+        })();
     </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLRLWXN7"
