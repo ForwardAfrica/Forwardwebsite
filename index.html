@@ -134,6 +134,20 @@
         .circle-large-anim:not([src]) {
             display: none;
         }
+        
+        /* Navy blue background for story-container section */
+        .story-container {
+            background-color: #001f3f !important; /* Navy blue */
+        }
+        
+        /* Navy blue background for partner-section, red cards */
+        .partner-section {
+            background-color: #001f3f !important; /* Navy blue */
+        }
+        
+        .partner-section > div > div {
+            background-color: rgb(220, 38, 38) !important; /* Red cards */
+        }
     </style>
     <script type="text/javascript">
         ! function(o, c) {
@@ -156,10 +170,27 @@
         gtag('config', 'G-4SZ39LZ517');
     </script>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
         body {
             -webkit-font-smoothing: antialiased;
             -moz-font-smoothing: antialiased;
             -o-font-smoothing: antialiased;
+            left: 0;
+            right: 0;
+        }
+        
+        /* Ensure main containers are properly positioned */
+        body > * {
+            position: relative;
+            left: auto;
+            right: auto;
         }
 
         ::selection {
@@ -1025,7 +1056,7 @@
                 <div id="slide-3.5" data-w-id="08d71208-3730-1a92-6a37-a2ff1a986a55" class="stories-section-slide active"><img width="946.6666870117188" height="640" alt="Arvind, 43, allocated 30% of his ForwardAfrica budget to childcare so he can focus on spending quality time with his kids without worrying about their care." src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ed03293b7faf8fe438c55d_Rectangle%2021768.avif"
                         loading="lazy" id="w-node-_08d71208-3730-1a92-6a37-a2ff1a986a56-9b4806c9" class="image-container" />
                     <div class="content-wrapper-2 slide-3">
-                        <div class="story">Nikhita, 31, <span class="text-span-4">allocated 40% of her ForwardAfrica budget </span>to eldercare giving her parents the support they need, and herself the peace of mind she deserves.</div>
+                        <div class="story">ForwardAfrica has empowered thousands of families across Africa, <span class="text-span-4">delivering transformative healthcare solutions </span>that bridge gaps in access, quality, and affordability—building a healthier, more resilient continent.</div>
                     </div>
                 </div>
             </div>
@@ -1054,9 +1085,9 @@
             <div data-delay="0" data-animation="fade" class="slider-3 w-slider"
                 data-autoplay="true" data-easing="ease" data-hide-arrows="true" data-disable-swipe="true" data-autoplay-limit="0" data-nav-spacing="3" data-duration="1000" data-infinite="true">
                 <div class="mask-3 w-slider-mask">
-                    <div class="product-slider-slide w-slide"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/690da11297dc7468b1f096ba_product-image-3.avif" loading="lazy" alt="" class="product-slider-image" /></div>
-                    <div class="product-slider-slide w-slide"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/690da112810fb106693dd0b1_product-image-2.avif" loading="lazy" alt="" class="product-slider-image" /></div>
-                    <div class="product-slider-slide w-slide"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/690da1120f6144f4ba90263d_product-image-1.avif" loading="lazy" alt="" class="product-slider-image" /></div>
+                    <!-- <div class="product-slider-slide w-slide"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/690da11297dc7468b1f096ba_product-image-3.avif" loading="lazy" alt="" class="product-slider-image" /></div> -->
+                    <div class="product-slider-slide w-slide"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/tabsphone.png" loading="lazy" alt="" class="product-slider-image" /></div>
+                    <!-- <div class="product-slider-slide w-slide"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/690da1120f6144f4ba90263d_product-image-1.avif" loading="lazy" alt="" class="product-slider-image" /></div> -->
                 </div>
             </div>
         </div>
