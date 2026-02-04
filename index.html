@@ -38,10 +38,62 @@
             --button-text-color: #1b2644; /* Change this to your desired button text color */
         }
         
-        /* Direct override for hero-container if needed */
+        /* Direct override for hero-container if needed - background only, no green gradient */
         .hero-container {
-            /* Uncomment and change the color below to override banner background directly */
-            /* background-color: #your-color-here !important; */
+            background-image: url("cdn.prod.website-files.com/68ece821879edc4e9b4806cc/1logo.jpeg") !important;
+            background-color: transparent !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            filter: none !important;
+            mix-blend-mode: normal !important;
+        }
+        /* Remove any green gradient / colour overlay from hero - only background, text and buttons visible */
+        .hero-container::before,
+        .hero-container::after {
+            display: none !important;
+        }
+        /* Remove greenish tint: no filter or blend on hero content */
+        .hero-container .hero-content-wrapper {
+            filter: none !important;
+            mix-blend-mode: normal !important;
+        }
+        /* Remove panel/background behind text and buttons - keep only image background */
+        .hero-container .hero-content-wrapper {
+            background: transparent !important;
+            background-color: transparent !important;
+            background-image: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+        .hero-container .hero-content-wrapper .container {
+            background: transparent !important;
+            background-color: transparent !important;
+            background-image: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+        .hero-container .logo-unit {
+            background-color: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+        }
+        /* Hide overlay layers completely so no greenish tint or grain */
+        .hero-container .div-block-3,
+        .hero-container .hero-glow-wrapper {
+            display: none !important;
+        }
+        .hero-container .div-block-3 .div-block,
+        .hero-container .div-block-3 .div-block-4 {
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+        }
+        /* Logo image: normal blend so it doesn't add greenish tint */
+        .hero-container .logo-unit img {
+            mix-blend-mode: normal !important;
         }
         
         /* Banner Text Styling */
@@ -172,7 +224,7 @@
         }
         /* If logo2.png has white pixels, blend so they show the hero background */
         .hero-container .logo-unit img {
-            mix-blend-mode: multiply;
+            mix-blend-mode: normal !important;
         }
         /* Larger logo in banner; negative margin keeps content below from moving */
         .hero-container .logo-unit {
@@ -1268,7 +1320,7 @@
     </div>
     <section data-figma-id="1591:5007" class="hero-container">
         <div data-figma-id="1591:5022" class="hero-content-wrapper">
-            <div data-figma-id="1822:23306" class="logo-unit"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo2.png" alt="ForwardAfrica by loop logo" loading="lazy" /></div>
+            <div data-figma-id="1822:23306" class="logo-unit"><img src="1logo.jpeg" alt="ForwardAfrica by loop logo" loading="lazy" /></div>
             <div data-figma-id="1591:5347" class="container">
                 <p data-figma-id="1591:5024" class="h1-main text-h1">Moving Africa Forward.</p>
                 <p data-figma-id="1591:5345" class="p">An African institution with an international agenda, building the foundations of a continent through Education, Capital, and Healthcare.</p>
@@ -1284,15 +1336,18 @@
         </div>
         <div style="opacity:0" class="hero-glow-wrapper"><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif" loading="lazy" width="648" sizes="(max-width: 767px) 100vw, 648px" alt="" srcset="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-500.avif 500w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-800.png 800w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif 1296w"
                 class="image-10" /><img src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif" loading="lazy" width="648" sizes="(max-width: 767px) 100vw, 648px" alt="" srcset="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-500.avif 500w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large-p-800.png 800w, https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806ee_glow-large.avif 1296w"
-                class="image-10" /></div><img class="image" src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806d1_shadow-top-left.svg" data-figma-image-id="68e9576edd92b779877e9a63" alt="" data-figma-id="1591:5008" data-figma-image-hash="89fac50a4332eef24227227df434ec3d"
+                class="image-10" /></div><!-- <img class="image" src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806d1_shadow-top-left.svg" data-figma-image-id="68e9576edd92b779877e9a63" alt="" data-figma-id="1591:5008" data-figma-image-hash="89fac50a4332eef24227227df434ec3d"
             loading="lazy" /><img class="image-2" src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806d2_shadow-top-right.svg" data-figma-image-id="68e9576f19f6520d4895f9a0" alt="" data-figma-id="1591:5029" data-figma-image-hash="57f699f45a8bde3c9ab0f09836da656b"
             loading="lazy" /><img class="image-3" src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806d3_shadow-bottom-right.svg" data-figma-image-id="68e95770e19b4218f1bf3074" alt="" data-figma-id="1591:5012" data-figma-image-hash="81c6352597c1f56729fae5c828554dbf"
             loading="lazy" /><img class="image-4" src="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b4806d4_shadow-bottom-left.svg" data-figma-image-id="68e95770122ec4d47c3b202d" alt="" data-figma-id="1591:5033" data-figma-image-hash="1e75b7afe1455970ad9b1b7c212ffab6"
-            loading="lazy" />
+            loading="lazy" /> -->
         <div data-w-id="26c12bd8-c780-ed86-2c27-a6d071b318cc" style="opacity:0" class="div-block-3">
             <div class="div-block">
+                <!-- div-block-4 section commented out - wording and buttons remain in hero-content-wrapper above
                 <div class="div-block-4"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif" loading="eager" width="1000" sizes="100vw" alt="" srcset="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 500w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 800w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 1080w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 2000w"
-                        class="circle-small-anim" /></div></div>
+                        class="circle-small-anim" /></div>
+                -->
+            </div>
         </div>
     </section>
     <section data-figma-id="1591:4557" class="social-proof-section">
@@ -2122,8 +2177,8 @@
     </section>
     <section class="cta-section">
         <div class="frame-1410222050">
-            <div class="div-block-6"><img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif" loading="lazy" sizes="(max-width: 2000px) 100vw, 2000px" srcset="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 500w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 800w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 1080w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 2000w"
-                    alt="" class="image-19" /></div>
+            <div class="div-block-6"><!-- <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif" loading="lazy" sizes="(max-width: 2000px) 100vw, 2000px" srcset="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 500w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 800w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 1080w, cdn.prod.website-files.com/68ece821879edc4e9b4806cc/Group458.avif 2000w"
+                    alt="" class="image-19" /> --></div>
             <div class="container-10">
                 <div class="title-style" style="font-style: italic; font-size: 2em; margin-bottom: 30px;">Building People is Building a Better Future</div>
                 <div class="paragraph-6 footer-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: left; max-width: 1200px; margin: 0 auto;">
