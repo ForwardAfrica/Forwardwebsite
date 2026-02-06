@@ -18,6 +18,9 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
     <link href="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/css/loop-healthflex-bbca85b4d79503a985a09c3.webflow.shared.4ac95a345.min.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         html.w-mod-js:not(.w-mod-ix3) :is(.leaf-2, .story-container, .flower-2) {
             visibility: hidden !important;
@@ -96,10 +99,10 @@
             mix-blend-mode: normal !important;
         }
         
-        /* Banner Text Styling */
+        /* Banner Text Styling - Forward Africa name with distinctive font */
         .hero-container .h1-main {
             /* Main heading: "Moving Africa Forward." */
-            /* Current: White (#fff), 48px, serif font, text shadow */
+            font-family: "DM Serif Display", Georgia, serif !important;
             color: var(--_variable-collection---white-100);
             font-size: 48px;
             font-weight: 400;
@@ -207,6 +210,12 @@
             background-color: rgb(220, 38, 38) !important; /* Red cards */
         }
 
+        /* CTA section / footer: navy blue background (all viewports) */
+        .cta-section,
+        .cta-section .frame-1410222050 {
+            background-color: #001f3f !important;
+        }
+
         /* Product section: purple and navy blue mix */
         .product-section {
             background-color: #1a1a3e !important; /* Deep navy-purple base */
@@ -240,9 +249,9 @@
             height: auto !important;
         }
 
-        /* Loading page: navy blue background, smaller logo */
+        /* Loading page: white background, larger logo, navy spinner */
         .preloader {
-            background-color: #0f172a !important; /* Navy blue */
+            background-color: #ffffff !important;
             background-image: none !important;
             flex-direction: column;
             align-items: center;
@@ -259,20 +268,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 140px;
-            height: 140px;
+            width: 200px;
+            height: 200px;
         }
         .preloader-spinner {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 160px;
-            height: 160px;
-            margin: -80px 0 0 -80px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            border-top-color: #ffffff;
+            width: 280px;
+            height: 280px;
+            margin: -140px 0 0 -140px;
+            border: 4px solid rgba(0, 31, 63, 0.25);
+            border-top-color: #001f3f;
             border-radius: 50%;
             animation: preloader-spin 0.9s linear infinite;
+            z-index: 1;
         }
         @keyframes preloader-spin {
             to { transform: rotate(360deg); }
@@ -280,12 +290,12 @@
         .preloader .preloader-logo,
         .preloader .image-12 {
             position: relative;
-            z-index: 1;
-            max-width: 120px !important;
+            z-index: 0;
+            max-width: 180px !important;
             width: auto !important;
             height: auto !important;
-            transform: scale(0.6) !important;
-            -webkit-transform: scale(0.6) !important;
+            transform: scale(1.1) !important;
+            -webkit-transform: scale(1.1) !important;
         }
     </style>
     <script type="text/javascript">
@@ -1007,6 +1017,7 @@
         /* CTA Section / Footer Mobile */
         @media (max-width: 768px) {
             .cta-section {
+                background-color: #001f3f !important;
                 padding: 60px 20px !important;
             }
             
@@ -1314,7 +1325,7 @@
         <div class="preloader-inner">
             <div class="preloader-logo-wrap">
                 <div class="preloader-spinner" aria-hidden="true"></div>
-                <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/logo2.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="ForwardAfrica logo" class="image-12 preloader-logo" />
+                <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/loader.png" loading="eager" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.5, 1.5, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="5b5b9731-2881-53d8-6efc-d751a7161f74" alt="Loading" class="image-12 preloader-logo" />
             </div>
         </div>
     </div>
