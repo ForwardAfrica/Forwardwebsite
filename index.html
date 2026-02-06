@@ -41,15 +41,45 @@
             --button-text-color: #1b2644; /* Change this to your desired button text color */
         }
         
-        /* Direct override for hero-container if needed - background only, no green gradient */
+        /* Direct override for hero-container - responsive layout */
         .hero-container {
-            background-image: url("cdn.prod.website-files.com/68ece821879edc4e9b4806cc/1logo.jpeg") !important;
+            position: relative !important;
             background-color: transparent !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
+            background-image: none !important;
             filter: none !important;
             mix-blend-mode: normal !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            min-height: clamp(420px, 85vh, 95vh) !important;
+            height: auto !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            padding-top: 48px !important;
+            padding-bottom: 48px !important;
+        }
+        /* Hero background image - real img so it adapts to every screen size */
+        .hero-bg-image {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+            display: block !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+        }
+        .hero-container .hero-content-wrapper {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        .hero-content-wrapper {
+            max-width: min(520px, 92vw) !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
         /* Remove any green gradient / colour overlay from hero - only background, text and buttons visible */
         .hero-container::before,
@@ -305,8 +335,8 @@
             n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
         }(window, document);
     </script>
-    <link href="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b480701_Favicon.png" rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.prod.website-files.com/68ece821879edc4e9b4806cc/68ece821879edc4e9b480702_Webclip%20Image.png" rel="apple-touch-icon" />
+    <link href="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/loader.png" rel="icon" type="image/png" />
+    <link href="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/loader.png" rel="apple-touch-icon" />
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-4SZ39LZ517"></script>
     <script type="text/javascript">
         window.dataLayer = window.dataLayer || [];
@@ -676,7 +706,7 @@
         @media (max-width: 768px) {
             .hero-container {
                 padding: 32px 16px 40px !important;
-                min-height: auto !important;
+                min-height: clamp(380px, 75vh, 90vh) !important;
                 width: 100% !important;
                 max-width: 100vw !important;
                 box-sizing: border-box !important;
@@ -687,7 +717,7 @@
                 padding: 0 8px !important;
                 text-align: center !important;
                 width: 100% !important;
-                max-width: 100% !important;
+                max-width: min(100%, calc(100vw - 32px)) !important;
                 box-sizing: border-box !important;
             }
             
@@ -1180,6 +1210,7 @@
         @media (max-width: 480px) {
             .hero-container {
                 padding: 30px 16px !important;
+                min-height: clamp(340px, 70vh, 85vh) !important;
             }
             
             .hero-container .h1-main {
@@ -1330,6 +1361,7 @@
         </div>
     </div>
     <section data-figma-id="1591:5007" class="hero-container">
+        <img src="cdn.prod.website-files.com/68ece821879edc4e9b4806cc/1logo.jpeg" alt="" class="hero-bg-image" loading="eager" />
         <div data-figma-id="1591:5022" class="hero-content-wrapper">
             <div data-figma-id="1822:23306" class="logo-unit"></div>
             <div data-figma-id="1591:5347" class="container">
